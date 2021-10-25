@@ -81,10 +81,10 @@ const LOCATIONS = {
   prison: "Prison",
   as: "Asylum",
   asylum: "Asylum",
-  ma: "Campsite",
-  maple: "Campsite",
-  camp: "Campsite",
-  campsite: "Campsite",
+  ma: "Maple Lodge",
+  maple: "Maple Lodge",
+  camp: "Maple Lodge",
+  campsite: "Maple Lodge",
 };
 
 const DIFFICULTY = {
