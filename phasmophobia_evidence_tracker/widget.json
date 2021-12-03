@@ -167,16 +167,10 @@
     "value": "!counter2down",
     "group": "Commands"
   },
-  "vipToggleOnCommand": {
+  "permissionSetCommand": {
     "type": "string",
-    "label": "Toggle Allowing VIPS on",
-    "value": "!vipon",
-    "group": "Commands"
-  },
-  "vipToggleOffCommand": {
-    "type": "string",
-    "label": "Toggle Allowing VIPS off",
-    "value": "!vipoff",
+    "label": "Set Required Permission (vip,trusted,sub,all)",
+    "value": "!permission",
     "group": "Commands"
   },
   "displayName": {
@@ -309,13 +303,16 @@
     },
     "group": "Optionals"
   },
-  "allowVIPS": {
+  "extendedPermissions": {
     "type": "dropdown",
-    "label": "Allow VIPS to use commands",
-    "value": "no",
+    "label": "Permissions required to use commands",
+    "value": "moderator",
     "options": {
-      "yes": "Yes",
-      "no": "No"
+      "moderator": "Moderator",
+      "vip": "VIP",
+      "trusted": "Trusted Users",
+      "subscriber": "Subscribers",
+      "all": "All Users"
     },
     "group": "Optionals"
   },
