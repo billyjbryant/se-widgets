@@ -1,30 +1,73 @@
-const version = "3.5.1";
+const version = "3.6.0 (Cursed Possessions)";
 
 // Order is important here:
 // EMF-5 | Freezing | Spirit Box | Writing | Orbs | Fingerprints | DOTS
 // 1 is true
 // 0 is false
 
-const BANSHEE = "0000111",
-  DEMON =       "0101010",
-  GORYO =       "1000011",
-  HANTU =       "0100110",
-  JINN =        "1100010",
-  MARE =        "0011100",
-  MYLING =      "1001010",
-  OBAKE =       "1000110",
-  ONI =         "1100001",
-  ONRYO =       "0110100",
-  PHANTOM =     "0010011",
-  POLTERGEIST = "0011010",
-  RAIJU =       "1000101",
-  REVENANT =    "0101100",
-  SHADE =       "1101000",
-  SPIRIT =      "1011000",
-  TWINS =       "1110000",
-  WRAITH =      "1010001",
-  YOKAI =       "0010101",
-  YUREI =       "0100101";
+const BANSHEE =     "0000111",
+      DEMON =       "0101010",
+      GORYO =       "1000011",
+      HANTU =       "0100110",
+      JINN =        "1100010",
+      MARE =        "0011100",
+      MIMIC =       "0110110",
+      MYLING =      "1001010",
+      OBAKE =       "1000110",
+      ONI =         "1100001",
+      ONRYO =       "0110100",
+      PHANTOM =     "0010011",
+      POLTERGEIST = "0011010",
+      RAIJU =       "1000101",
+      REVENANT =    "0101100",
+      SHADE =       "1101000",
+      SPIRIT =      "1011000",
+      TWINS =       "1110000",
+      WRAITH =      "1010001",
+      YOKAI =       "0010101",
+      YUREI =       "0100101";
+
+const EVIDENCE = {
+  emf: "emf",
+  freez: "freezing",
+  temp: "freezing",
+  box: "spiritBox",
+  spirit: "spiritBox",
+  book: "writing",
+  writ: "Writing",
+  orbs: "Orbs",
+  fing: "fingerprints",
+  hand: "fingerprints",
+  dots: "dots",
+}
+
+const POSSESSIONS = {
+  none: "none",
+  doll: "doll",
+  tortured: "doll",
+  voodoo: "doll",
+  mirror: "mirror",
+  box: "music",
+  music: "music",
+  circle: "summoning",
+  summon: "summoning",
+  cards: "tarot",
+  tarot: "tarot",
+  board: "ouija",
+  ouija: "ouija",
+  luigi: "ouija",
+  milton: "ouija",
+}
+
+const SIGHTINGS = {
+  bone: "boner",
+  slender: "slenderman",
+  man: "slenderman",
+  water: "water",
+  dirty: "water",
+  "dirty water": "water",
+  coffee: "water",
+}
 
 const OPTIONAL_OBJECTIVES = {
   ca: "Candle",
@@ -105,10 +148,10 @@ const DIFFICULTY = {
 
 // Constants for displaying evidence on the widget
 const EVIDENCE_OFF = 0,
-  EVIDENCE_ON = 1,
-  EVIDENCE_IMPOSSIBLE = 2,
-  EVIDENCE_COMPLETE_IMPOSSIBLE = 3,
-  EVIDENCE_NEGATIVE = 4;
+      EVIDENCE_ON = 1,
+      EVIDENCE_IMPOSSIBLE = 2,
+      EVIDENCE_COMPLETE_IMPOSSIBLE = 3,
+      EVIDENCE_NEGATIVE = 4;
 
 const EVIDENCE_NAMES_IN_DOM = [
   "emf",
@@ -121,13 +164,13 @@ const EVIDENCE_NAMES_IN_DOM = [
 ];
 
 const COUNTER_1 = 1,
-  COUNTER_2 = 2;
+      COUNTER_2 = 2;
 
 // Permission levels for commands
 const PERMISSION_GLITCHED = 0,
-  PERMISSION_BROADCASTER = 1,
-  PERMISSION_MOD = 2,
-  PERMISSION_VIP = 3;
+      PERMISSION_BROADCASTER = 1,
+      PERMISSION_MOD = 2,
+      PERMISSION_VIP = 3;
 
 // TODO: Move all widget and user state to here
 let userState = {
@@ -135,6 +178,15 @@ let userState = {
   conclusionString: "",
   counter: 0,
   counter2: 0,
+  cursedPossessions: {
+    none: true,
+    doll: false,
+    mirror: false,
+    music: false,
+    ouija: false,
+    summoning: false,
+    tarot: false,
+  },
   evidence: {
     emf: EVIDENCE_OFF,
     spiritBox: EVIDENCE_OFF,
@@ -165,9 +217,9 @@ let userState = {
     //   strike: true/false
     // }
   ],
-  optionalSightings: {
-    boner: false,
-    ouija: false,
+  sightings: {
+    bone: false,
+    slenderman: false,
     water: false,
   },
 };
@@ -264,23 +316,21 @@ window.addEventListener("onWidgetLoad", function (obj) {
         userState,
       ]);
     },
-    [fieldData["bonerCommand"]]: (data) => {
-      runCommandWithPermission(modOrVIPPermission(config), data, _toggleSighting, [
-        'boner',
-        userState,
-      ]);
+    [fieldData["evidenceCommand"]]: (data) => {
+      runCommandWithPermission(modOrVIPPermission(config), data, _toggleEvidence, 
+      [data.text, userState, config]);
     },
-    [fieldData["ouijaCommand"]]: (data) => {
-      runCommandWithPermission(modOrVIPPermission(config), data, _toggleSighting, [
-        'ouija',
-        userState,
-      ]);
+    [fieldData["evidenceNegativeCommand"]]: (data) => {
+      runCommandWithPermission(modOrVIPPermission(config), data, _setEvidenceNegative, 
+      [data.text, userState, config]);
     },
-    [fieldData["waterCommand"]]: (data) => {
-      runCommandWithPermission(modOrVIPPermission(config), data, _toggleSighting, [
-        'water',
-        userState,
-      ]);
+    [fieldData["possessionCommand"]]: (data) => {
+      runCommandWithPermission(modOrVIPPermission(config), data, _togglePossession, 
+      [data.text, userState]);
+    },
+    [fieldData["sightingCommand"]]: (data) => {
+      runCommandWithPermission(modOrVIPPermission(config), data, _toggleSighting, 
+      [data.text, userState]);
     },
     [fieldData["emfCommand"]]: (data) => {
       runCommandWithPermission(modOrVIPPermission(config), data, _toggleEMF, [
@@ -559,6 +609,11 @@ window.addEventListener("onWidgetLoad", function (obj) {
       evidence: MARE,
     },
     {
+      type: "Mimic",
+      conclusion: createGhostConclusionString(fieldData["mimicString"], "The Mimic"),
+      evidence: MIMIC,
+    },
+    {
       type: "Myling",
       conclusion: createGhostConclusionString(fieldData["mylingString"], "Myling"),
       evidence: MYLING,
@@ -687,12 +742,11 @@ window.addEventListener("onWidgetLoad", function (obj) {
   // TODO: Refactor to set up in config
   let displayName = fieldData["displayName"] === "yes" ? true : false;
   let displayLocation = fieldData["displayLocation"] === "yes" ? true : false;
-  let displayBoner = fieldData["displayBoner"] === "yes" ? true : false;
-  let displayOuija = fieldData["displayOuija"] === "yes" ? true : false;
-  let displayWater = fieldData["displayWater"] === "yes" ? true : false;
   let displayEvidence = fieldData["displayEvidence"] === "yes" ? true : false;
   let displayCounter = fieldData["displayCounter"] === "yes" ? true : false;
   let displayCounter2 = fieldData["displayCounter2"] === "yes" ? true : false;
+  let displayCursedPossessions = fieldData["displayCursedPossessions"] === "yes" ? true : false;
+  let displaySightings = fieldData["displaySightings"] === "yes" ? true : false;
   let displayOptionalObjectives =
     fieldData["displayOptionalObjectives"] === "yes" ? true : false;
   let displayConclusion =
@@ -702,27 +756,16 @@ window.addEventListener("onWidgetLoad", function (obj) {
     $(`#name`).addClass("hidden");
   }
 
-  if (!displayLocation && !displayBoner && !displayOuija && !displayWater) {
+  if (!displayLocation && !displaySightings) {
     $(`#location-container`).addClass("hidden");
   } else {
     if (!displayLocation) {
       $(`#location-name`).addClass("hidden");
       $(`#location-difficulty`).addClass("hidden");
     }
-
-    if (!displayBoner && !displayOuija && !displayWater) {
+    if (!displaySightings) {
       $(`#location-sightings`).addClass("hidden");
-    } else {
-      if (!displayBoner) {
-        $(`#boner-svg-container`).addClass("hidden");
-      }
-      if (!displayOuija) {
-        $(`#ouija-svg-container`).addClass("hidden");
-      }
-      if (!displayWater) {
-        $(`#water-svg-container`).addClass("hidden");
-      }
-    }
+    } 
   }
 
   if (!displayEvidence && !displayCounter) {
@@ -741,6 +784,10 @@ window.addEventListener("onWidgetLoad", function (obj) {
     } else {
       $(`#counter2-name`).html(". "+$(`#counter2-name`).text());
     }
+  }
+
+  if (!displayCursedPossessions) {
+    $(`#cursed-possessions-container`).addClass("hidden");
   }
 
   if (!displayOptionalObjectives) {
@@ -850,8 +897,36 @@ const _setDiffName = (command, state) => {
 };
 
 const _toggleSighting = (sighting, state) => {
-  state.optionalSightings[sighting] = !state.optionalSightings[sighting]
+  sightingArray = sighting.split(" ");
+  sightingArray.shift();
+  for (const [key,value] of Object.entries(sightingArray)) {
+    const s = getValueFromArray(SIGHTINGS, value);
+    state.sightings[s] = !state.sightings[s]
+  }
 }
+
+const _togglePossession = (possession, state) => {
+  possession = possession.substr(possession.indexOf(" ") + 1)
+  const thisPossession = getValueFromArray(POSSESSIONS, possession);
+  for (const [key] of Object.entries(POSSESSIONS)) {
+    state.cursedPossessions[key] = (key === thisPossession) ? !state.cursedPossessions[key] : false;
+  }
+  state.cursedPossessions['none'] = (arrayIsFalse(state.cursedPossessions)) ? true : false;
+}
+
+const _toggleEvidence = (evidence, state, config) => {
+  evidenceArray = evidence.split(" ").shift();
+  for (const [key] of Object.entries(evidenceArray)) {
+    toggleEvidence(command, state, config, key)
+  }
+};
+
+const _setEvidenceNegative = (evidence, state, config) => {
+  evidenceArray = evidence.split(" ")
+  for (const [e] of Object.entries(evidenceArray)) {
+    setEvidenceNegative(e, state, config)
+  }
+};
 
 const _toggleEMF = (command, state, config) => {
   toggleEvidence(command, state, config, 'emf')
@@ -991,6 +1066,7 @@ const resetGhost = (newName, state) => {
   resetEvidence(state.evidenceDisplay);
   resetOptionalObjectives([], state);
   resetSightings(state);
+  resetPossessions(state);
   resetConclusion(state);
 };
 
@@ -1010,8 +1086,18 @@ const resetLocationName = (state) => {
 };
 
 const resetSightings = (state) => {
-  for (const [key] of Object.entries(state.optionalSightings)) {
-    state.optionalSightings[key] = false
+  for (const [key] of Object.entries(state.sightings)) {
+    state.sightings[key] = false
+  }
+};
+
+const resetPossessions = (state) => {
+  for (const [key] of Object.entries(state.cursedPossessions)) {
+    if (key === "none") {
+      state.cursedPossessions[key] = true
+    } else {
+      state.cursedPossessions[key] = false
+    }
   }
 };
 
@@ -1264,6 +1350,24 @@ const getDifficultyString = (difficulty) => {
   updateLocationDiff(DIFFICULTY[difficulty.toLowerCase()]);
 };
 
+const getValueFromArray = (array, string) => {
+  for (const [key,value] of Object.entries(array)){
+    var pattern = new RegExp(`^${key}`, 'ig');
+    if(pattern.test(string)){
+      return value;
+    }
+  }
+}
+
+const arrayIsFalse = (array) => {
+  for (const [key] of Object.entries(array)) {
+    if (array[key]) {
+      return false;
+    }
+  }
+  return true;
+}
+
 // Returns each first character capitalized
 const camelCase = (sentence) => {
   return sentence.replace(/(^\w{1})|(\s+\w{1})/g, (letter) =>
@@ -1486,7 +1590,8 @@ const updateDashboardDOM = (state) => {
   updateNameDOM(state.ghostName);
   updateLocationName(state.location.locationName);
   updateLocationDiff(state.location.locationDiff);
-  updateSighting(state.optionalSightings);
+  updateSighting(state.sightings);
+  updatePossession(state.cursedPossessions);
   updateEvidenceDOM(state.evidenceDisplay);
   updateOptionalObjectivesDOM(state.optionalObjectives);
   updateConclusion(state.conclusionString);
@@ -1630,8 +1735,20 @@ const updateLocationDiff = (diff) => {
 /** SIGHTING RELATED DOM MANIPULATING FUNCTIONS */
 const updateSighting = (sightings) => {
   for (const [key, value] of Object.entries(sightings)) {
-    $(`#${key}`).removeClass([`${key}-active`, `${key}-inactive`])
-    $(`#${key}`).addClass(value ? `${key}-active` : `${key}-inactive`)
+    $(`#${key}-svg-container`).removeClass([`sighting-active`, `sighting-${displayInactiveSighting}`])
+    $(`#${key}-svg-container`).addClass(value ? `sighting-active` : `sighting-${displayInactiveSighting}`)
+    $(`#${key}`).removeClass([`sighting-active`, `sighting-${displayInactiveSighting}`])
+    $(`#${key}`).addClass(value ? `sighting-active` : `sighting-${displayInactiveSighting}`)
+  }
+}
+
+/** POSESSIONS RELATED DOM MANIPULATING FUNCTIONS */
+const updatePossession = (possessions) => {
+  for (const [key, value] of Object.entries(possessions)) {
+    $(`#${key}-svg-container`).removeClass([`possession-active`, `possession-inactive`])
+    $(`#${key}`).removeClass([`possession-active`, `possession-inactive`])
+    $(`#${key}-svg-container`).addClass(value ? `possession-active` : `possession-inactive`)
+    $(`#${key}`).addClass(value ? `possession-active` : `possession-inactive`)
   }
 }
 

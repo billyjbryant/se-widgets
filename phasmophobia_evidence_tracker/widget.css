@@ -71,46 +71,41 @@
   margin: 0 {{evidenceMarginSize}}px;
 }
 
-.boner-svg-container {
-  height: {{bonerIconHeight}}px;
-  width: {{bonerIconHeight}}px;
+.sighting-hidden {
+  display: none;
+  visibility: hidden;
+}
+
+.sighting-inactive {
+  fill: {{sightingIconInactiveColor}};
+}
+
+.sighting-active {
+  fill: {{sightingIconActiveColor}};
+  height: {{sightingIconHeight}}px;
+  width: {{sightingIconHeight}}px;
+}
+
+.sighting-svg-container {
+  height: {{sightingIconHeight}}px;
+  width: {{sightingIconHeight}}px;
   margin-left: 10px;
 }
 
-.boner-inactive {
-  fill: {{bonerIconInactiveColor}};
+.possession-inactive {
+  display: none;
+  visibility: hidden;
 }
 
-.boner-active {
-  fill: {{bonerIconActiveColor}};
+.possession-active {
+  fill: {{possessionIconActiveColor}};
+  height: {{possessionIconHeight}}px;
+  width: {{possessionIconHeight}}px;
 }
 
-.ouija-svg-container {
-  height: {{ouijaIconHeight}}px;
-  width: {{ouijaIconHeight}}px;
-  margin-left: 10px;
-}
-
-.ouija-inactive {
-  fill: {{ouijaIconInactiveColor}};
-}
-
-.ouija-active {
-  fill: {{ouijaIconActiveColor}};
-}
-
-.water-svg-container {
-  height: {{waterIconHeight}}px;
-  width: {{waterIconHeight}}px;
-  margin-left: 10px;
-}
-
-.water-inactive {
-  fill: {{waterIconInactiveColor}};
-}
-
-.water-active {
-  fill: {{waterIconActiveColor}};
+.possession-svg-container {
+  height: {{possessionIconHeight}}px;
+  width: {{possessionIconHeight}}px;
 }
 
 .divider-color > * + * {
