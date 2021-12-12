@@ -901,7 +901,10 @@ const _toggleSighting = (sighting, state) => {
   sightingArray.shift();
   for (const [key,value] of Object.entries(sightingArray)) {
     const s = getValueFromArray(SIGHTINGS, value);
-    state.sightings[s] = !state.sightings[s]
+    if (s === "slenderman") { 
+      console.log(state.location.locationName)
+      state.sightings[s] = (state.location.locationName === "Maple Lodge") ? !state.sightings[s] : false;
+    } else { state.sightings[s] = !state.sightings[s] }
   }
 }
 
@@ -1377,10 +1380,12 @@ const getLocationNameString = (location) => {
     _setDiffName(locationSplit[1].toLowerCase(), userState);
   }
   updateLocationName(LOCATIONS[locationSplit[0].toLowerCase()]);
+  return LOCATIONS[locationSplit[0].toLowerCase()];
 };
 
 const getDifficultyString = (difficulty) => {
   updateLocationDiff(DIFFICULTY[difficulty.toLowerCase()]);
+  return DIFFICULTY[difficulty.toLowerCase()]
 };
 
 const getValueFromArray = (array, string) => {
@@ -1768,10 +1773,10 @@ const updateLocationDiff = (diff) => {
 /** SIGHTING RELATED DOM MANIPULATING FUNCTIONS */
 const updateSighting = (sightings) => {
   for (const [key, value] of Object.entries(sightings)) {
-    $(`#${key}-svg-container`).removeClass([`sighting-active`, `sighting-${displayInactiveSighting}`])
-    $(`#${key}-svg-container`).addClass(value ? `sighting-active` : `sighting-${displayInactiveSighting}`)
-    $(`#${key}`).removeClass([`sighting-active`, `sighting-${displayInactiveSighting}`])
-    $(`#${key}`).addClass(value ? `sighting-active` : `sighting-${displayInactiveSighting}`)
+    $(`#${key}-svg-container`).removeClass([`sighting-active`, `sighting-{{displayInactiveSighting}}`])
+    $(`#${key}-svg-container`).addClass(value ? `sighting-active` : `sighting-{{displayInactiveSighting}}`)
+    $(`#${key}`).removeClass([`sighting-active`, `sighting-{{displayInactiveSighting}}`])
+    $(`#${key}`).addClass(value ? `sighting-active` : `sighting-{{displayInactiveSighting}}`)
   }
 }
 
