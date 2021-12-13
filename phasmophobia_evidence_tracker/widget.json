@@ -1,14 +1,4 @@
 {
-  "allowVIPS": {
-    "type": "dropdown",
-    "label": "Allow VIPS to use commands",
-    "value": "no",
-    "options": {
-      "yes": "Yes",
-      "no": "No"
-    },
-    "group": "Main Options"
-  },
   "resetCommand": {
     "type": "string",
     "label": "Name Reset Command",
@@ -195,19 +185,31 @@
     "value": "!vipoff",
     "group": "Commands"
   },
-  "displayName": {
+  "dashboardBackgroundColor": {
+    "type": "colorpicker",
+    "label": "Background Color",
+    "value": "rgba(0, 0, 0, 0.5)",
+    "group": "Main Widget Options"
+  },
+  "fontFamily": {
+    "type": "googleFont",
+    "label": "Font",
+    "value": "Roboto",
+    "group": "Main Widget Options"
+  },
+  "allowVIPS": {
     "type": "dropdown",
-    "label": "Display Name",
-    "value": "yes",
+    "label": "Allow VIPS to use commands",
+    "value": "no",
     "options": {
       "yes": "Yes",
       "no": "No"
     },
-    "group": "Ghost Name"
+    "group": "Main Widget Options"
   },
-  "autoCapitalize": {
+  "displayName": {
     "type": "dropdown",
-    "label": "Auto Capitalize Name",
+    "label": "Display Name",
     "value": "yes",
     "options": {
       "yes": "Yes",
@@ -227,6 +229,30 @@
     "value": "Name: [name]",
     "group": "Ghost Name"
   },
+  "nameColor": {
+    "type": "colorpicker",
+    "label": "Name Color",
+    "value": "rgb(255, 255, 255)",
+    "group": "Ghost Name"
+  },
+  "nameFontSize": {
+    "type": "number",
+    "label": "Name Font Size",
+    "value": 24,
+    "step": 1,
+    "min": 1,
+    "group": "Ghost Name"
+  },
+  "autoCapitalize": {
+    "type": "dropdown",
+    "label": "Auto Capitalize Name",
+    "value": "yes",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "group": "Ghost Name"
+  },
   "displayLocation": {
     "type": "dropdown",
     "label": "Display Map Name",
@@ -235,6 +261,26 @@
       "yes": "Yes",
       "no": "No"
     },
+    "group": "Map"
+  },
+  "noLocationString": {
+    "type": "text",
+    "label": "No Map Selected Message",
+    "value": "No Map Selected...",
+    "group": "Map"
+  },
+  "locationFontColor": {
+    "type": "colorpicker",
+    "label": "Map Name Color",
+    "value": "rgb(255, 255, 255)",
+    "group": "Map"
+  },
+  "locationFontSize": {
+    "type": "number",
+    "label": "Map Name Font Size",
+    "value": 16,
+    "step": 1,
+    "min": 1,
     "group": "Map"
   },
   "locationSpacing": {
@@ -251,24 +297,6 @@
     },
     "group": "Map"
   },
-  "locationFontColor": {
-    "type": "colorpicker",
-    "label": "Map Name Color",
-    "value": "rgb(255, 255, 255)",
-    "group": "Map"
-  },
-  "locationFontSize": {
-    "type": "number",
-    "label": "Map Name Font Size",
-    "value": 16,
-    "group": "Map"
-  },
-  "noLocationString": {
-    "type": "text",
-    "label": "No Map Selected Message",
-    "value": "No Map Selected...",
-    "group": "Map"
-  },
   "displaySightings": {
     "type": "dropdown",
     "label": "Display Sightings",
@@ -279,10 +307,14 @@
     },
     "group": "Sightings"
   },
-  "sightingIconHeight": {
-    "type": "number",
-    "label": "Sightings Icon Height",
-    "value": 30,
+  "displayInactiveSighting": {
+    "type": "dropdown",
+    "label": "Display Inactive Sightings",
+    "value": "inactive",
+    "options": {
+      "inactive": "Yes",
+      "hidden": "No"
+    },
     "group": "Sightings"
   },
   "sightingIconInactiveColor": {
@@ -297,14 +329,12 @@
     "value": "rgba(0, 230, 64, 1)",
     "group": "Sightings"
   },
-  "displayInactiveSighting": {
-    "type": "dropdown",
-    "label": "Display Inactive Sightings",
-    "value": "inactive",
-    "options": {
-      "inactive": "Yes",
-      "hidden": "No"
-    },
+  "sightingIconHeight": {
+    "type": "number",
+    "label": "Sightings Icon Height",
+    "value": 30,
+    "step": 0.5,
+    "min": 0.5,
     "group": "Sightings"
   },
   "displayCursedPossessions": {
@@ -315,12 +345,6 @@
       "yes": "Yes",
       "no": "No"
     },
-    "group": "Cursed Possessions"
-  },
-  "possessionIconHeight": {
-    "type": "number",
-    "label": "Cursed Possession Icon Height",
-    "value": 30,
     "group": "Cursed Possessions"
   },
   "possessionIconInactiveColor": {
@@ -335,103 +359,13 @@
     "value": "rgba(0, 230, 64, 1)",
     "group": "Cursed Possessions"
   },
-  "displayCounter": {
-    "type": "dropdown",
-    "label": "Display Counter(s)",
-    "value": "yes",
-    "options": {
-      "yes": "Yes",
-      "no": "No"
-    },
-    "group": "Counters"
-  },
-  "counterDefaultString": {
-    "type": "text",
-    "label": "Counter Default Name",
-    "value": "Counter:",
-    "group": "Counters"
-  },
-  "displayCounter2": {
-    "type": "dropdown",
-    "label": "Display Counter 2",
-    "value": "yes",
-    "options": {
-      "yes": "Yes",
-      "no": "No"
-    },
-    "group": "Counters"
-  },
-  "counter2DefaultString": {
-    "type": "text",
-    "label": "Counter 2 Default Name",
-    "value": "Counter 2:",
-    "group": "Counters"
-  },
-  "counterFontColor": {
-    "type": "colorpicker",
-    "label": "Counter Color",
-    "value": "rgb(255, 255, 255)",
-    "group": "Counters"
-  },
-  "counterFontSize": {
+  "possessionIconHeight": {
     "type": "number",
-    "label": "Counter Font Size",
-    "value": 24,
-    "group": "Counters"
-  },
-  "displayOptionalObjectives": {
-    "type": "dropdown",
-    "label": "Display Optional Objectives",
-    "value": "yes",
-    "options": {
-      "yes": "Yes",
-      "no": "No"
-    },
-    "group": "Objectives"
-  },
-  "objectivesColor": {
-    "type": "colorpicker",
-    "label": "Objectives Text Color",
-    "value": "rgb(254, 255, 255)",
-    "group": "Objectives"
-  },
-  "objectivesFontSize": {
-    "type": "number",
-    "label": "Objectives Font Size",
-    "value": 16,
-    "group": "Objectives"
-  },
-  "objectivesStrikethroughSize": {
-    "type": "number",
-    "label": "Objectives Strikethrough Size",
-    "value": 6,
-    "group": "Objectives"
-  },
-  "objectivesStrikethroughColor": {
-    "type": "colorpicker",
-    "label": "Objectives Strikethrough Color",
-    "value": "rgba(234, 66, 29, 0.83)",
-    "group": "Objectives"
-  },
-  "objectivesSpacing": {
-    "type": "dropdown",
-    "label": "Optional Objectives Spacing",
-    "value": "justify-between",
-    "options": {
-      "justify-start": "Left Align",
-      "justify-end": "Right Align",
-      "justify-center": "Center Align",
-      "justify-between": "Space Between",
-      "justify-around": "Space Around",
-      "justify-evenly": "Space Evenly"
-    },
-    "group": "Objectives"
-  },
-  "noOptionalObjectivesMessage": {
-    "type": "text",
-    "label": "No Optional Objectives Message",
-    "value": "Widget Author: GlitchedMythos",
-    "group": "Objectives"
+    "label": "Cursed Possession Icon Height",
+    "value": 30,
+    "step": 0.5,
+    "min": 0.5,
+    "group": "Cursed Possessions"
   },
   "displayEvidence": {
     "type": "dropdown",
@@ -455,7 +389,7 @@
   },
   "useEvidenceImpossibleCompleted": {
     "type": "dropdown",
-    "label": "Use different impossible color when complete:",
+    "label": "Use different impossible color when complete",
     "value": "yes",
     "options": {
       "yes": "Yes",
@@ -466,7 +400,7 @@
   "evidenceActive": {
     "type": "colorpicker",
     "label": "Active Evidence",
-    "value": "rgba(50,205,50 ,1 )",
+    "value": "rgba(50, 205, 50, 1)",
     "group": "Evidence"
   },
   "evidenceInactive": {
@@ -497,13 +431,121 @@
     "type": "number",
     "label": "Evidence Pixel Size",
     "value": 50,
+    "step": 1,
+    "min": 1,
     "group": "Evidence"
   },
   "evidenceMarginSize": {
     "type": "number",
     "label": "Evidence Horizontal Margin Size",
     "value": 5,
+    "step": 0.25,
+    "min": 0.25,
     "group": "Evidence"
+  },
+  "displayCounter": {
+    "type": "dropdown",
+    "label": "Display Counter(s)",
+    "value": "yes",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "group": "Counters"
+  },
+  "displayCounter2": {
+    "type": "dropdown",
+    "label": "Display Counter 2",
+    "value": "yes",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "group": "Counters"
+  },
+  "counterDefaultString": {
+    "type": "text",
+    "label": "Counter Default Name",
+    "value": "Counter:",
+    "group": "Counters"
+  },
+  "counter2DefaultString": {
+    "type": "text",
+    "label": "Counter 2 Default Name",
+    "value": "Counter 2:",
+    "group": "Counters"
+  },
+  "counterFontColor": {
+    "type": "colorpicker",
+    "label": "Counter Color",
+    "value": "rgb(255, 255, 255)",
+    "group": "Counters"
+  },
+  "counterFontSize": {
+    "type": "number",
+    "label": "Counter Font Size",
+    "value": 24,
+    "step": 1,
+    "min": 1,
+    "group": "Counters"
+  },
+  "displayOptionalObjectives": {
+    "type": "dropdown",
+    "label": "Display Optional Objectives",
+    "value": "yes",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "group": "Optional Objectives"
+  },
+  "noOptionalObjectivesMessage": {
+    "type": "text",
+    "label": "No Optional Objectives Message",
+    "value": "Widget Author: GlitchedMythos",
+    "group": "Optional Objectives"
+  },
+  "objectivesColor": {
+    "type": "colorpicker",
+    "label": "Objectives Text Color",
+    "value": "rgb(255, 255, 255)",
+    "group": "Optional Objectives"
+  },
+  "objectivesStrikethroughColor": {
+    "type": "colorpicker",
+    "label": "Objectives Strikethrough Color",
+    "value": "rgba(234, 66, 29, 0.83)",
+    "group": "Optional Objectives"
+  },
+  "objectivesFontSize": {
+    "type": "number",
+    "label": "Objectives Font Size",
+    "value": 16,
+    "step": 1,
+    "min": 1,
+    "group": "Optional Objectives"
+  },
+  "objectivesStrikethroughSize": {
+    "type": "number",
+    "label": "Objectives Strikethrough Size",
+    "value": 6,
+    "step": 0.25,
+    "min": 0.25,
+    "group": "Optional Objectives"
+  },
+  "objectivesSpacing": {
+    "type": "dropdown",
+    "label": "Optional Objectives Spacing",
+    "value": "justify-between",
+    "options": {
+      "justify-start": "Left Align",
+      "justify-end": "Right Align",
+      "justify-center": "Center Align",
+      "justify-between": "Space Between",
+      "justify-around": "Space Around",
+      "justify-evenly": "Space Evenly"
+    },
+    "group": "Optional Objectives"
   },
   "displayConclusion": {
     "type": "dropdown",
@@ -525,185 +567,179 @@
     "type": "number",
     "label": "Conclusion Font Size",
     "value": 16,
+    "step": 1,
+    "min": 1,
     "group": "Conclusion"
   },
   "zeroEvidenceConclusionString": {
     "type": "text",
     "label": "Zero Evidence",
     "value": "Waiting for Evidence",
-    "group": "Conclusion Messages"
+    "group": "Conclusion Messages - Empty for Default"
   },
   "oneEvidenceConclusionString": {
     "type": "text",
     "label": "One Evidence",
     "value": "Not sure yet...",
-    "group": "Conclusion Messages"
+    "group": "Conclusion Messages - Empty for Default"
   },
   "impossibleConclusionString": {
     "type": "text",
     "label": "Too much evidence entered",
     "value": "It's over 9000!!",
-    "group": "Conclusion Messages"
+    "group": "Conclusion Messages - Empty for Default"
   },
   "bansheeString": {
     "type": "text",
-    "label": "Banshee (Leave Empty for Default)",
+    "label": "Banshee",
     "value": "",
-    "group": "Conclusion Messages"
+    "group": "Conclusion Messages - Empty for Default"
   },
   "demonString": {
     "type": "text",
-    "label": "Demon (Leave Empty for Default)",
+    "label": "Demon",
     "value": "",
-    "group": "Conclusion Messages"
+    "group": "Conclusion Messages - Empty for Default"
   },
   "goryoString": {
     "type": "text",
-    "label": "Goryo (Leave Empty for Default)",
+    "label": "Goryo",
     "value": "",
-    "group": "Conclusion Messages"
+    "group": "Conclusion Messages - Empty for Default"
   },
   "hantuString": {
     "type": "text",
-    "label": "Hantu (Leave Empty for Default)",
+    "label": "Hantu",
     "value": "",
-    "group": "Conclusion Messages"
+    "group": "Conclusion Messages - Empty for Default"
   },
   "jinnString": {
     "type": "text",
-    "label": "Jinn (Leave Empty for Default)",
+    "label": "Jinn",
     "value": "",
-    "group": "Conclusion Messages"
+    "group": "Conclusion Messages - Empty for Default"
   },
   "mareString": {
     "type": "text",
-    "label": "Mare (Leave Empty for Default)",
+    "label": "Mare",
     "value": "",
-    "group": "Conclusion Messages"
+    "group": "Conclusion Messages - Empty for Default"
   },
   "mimicString": {
     "type": "text",
-    "label": "The Mimic (Leave Empty for Default)",
+    "label": "The Mimic",
     "value": "",
-    "group": "Conclusion Messages"
+    "group": "Conclusion Messages - Empty for Default"
   },
   "mylingString": {
     "type": "text",
-    "label": "Myling (Leave Empty for Default)",
+    "label": "Myling",
     "value": "",
-    "group": "Conclusion Messages"
+    "group": "Conclusion Messages - Empty for Default"
   },
   "obakeString": {
     "type": "text",
-    "label": "Obake (Leave Empty for Default)",
+    "label": "Obake",
     "value": "",
-    "group": "Conclusion Messages"
+    "group": "Conclusion Messages - Empty for Default"
   },
   "oniString": {
     "type": "text",
-    "label": "Oni (Leave Empty for Default)",
+    "label": "Oni",
     "value": "",
-    "group": "Conclusion Messages"
+    "group": "Conclusion Messages - Empty for Default"
   },
   "onryoString": {
     "type": "text",
-    "label": "Onryo (Leave Empty for Default)",
+    "label": "Onryo",
     "value": "",
-    "group": "Conclusion Messages"
+    "group": "Conclusion Messages - Empty for Default"
   },
   "phantomString": {
     "type": "text",
-    "label": "Phantom (Leave Empty for Default)",
+    "label": "Phantom",
     "value": "",
-    "group": "Conclusion Messages"
+    "group": "Conclusion Messages - Empty for Default"
   },
   "poltergeistString": {
     "type": "text",
-    "label": "Poltergeist (Leave Empty for Default)",
+    "label": "Poltergeist",
     "value": "",
-    "group": "Conclusion Messages"
+    "group": "Conclusion Messages - Empty for Default"
   },
   "raijuString": {
     "type": "text",
-    "label": "Raiju (Leave Empty for Default)",
+    "label": "Raiju",
     "value": "",
-    "group": "Conclusion Messages"
+    "group": "Conclusion Messages - Empty for Default"
   },
   "revenantString": {
     "type": "text",
-    "label": "Revenant (Leave Empty for Default)",
+    "label": "Revenant",
     "value": "",
-    "group": "Conclusion Messages"
+    "group": "Conclusion Messages - Empty for Default"
   },
   "shadeString": {
     "type": "text",
-    "label": "Shade (Leave Empty for Default)",
+    "label": "Shade",
     "value": "",
-    "group": "Conclusion Messages"
+    "group": "Conclusion Messages - Empty for Default"
   },
   "spiritString": {
     "type": "text",
-    "label": "Spirit (Leave Empty for Default)",
+    "label": "Spirit",
     "value": "",
-    "group": "Conclusion Messages"
+    "group": "Conclusion Messages - Empty for Default"
   },
   "twinsString": {
     "type": "text",
-    "label": "The Twins (Leave Empty for Default)",
+    "label": "The Twins",
     "value": "",
-    "group": "Conclusion Messages"
+    "group": "Conclusion Messages - Empty for Default"
   },
   "wraithString": {
     "type": "text",
-    "label": "Wraith (Leave Empty for Default)",
+    "label": "Wraith",
     "value": "",
-    "group": "Conclusion Messages"
+    "group": "Conclusion Messages - Empty for Default"
   },
   "yokaiString": {
     "type": "text",
-    "label": "Yokai (Leave Empty for Default)",
+    "label": "Yokai",
     "value": "",
-    "group": "Conclusion Messages"
+    "group": "Conclusion Messages - Empty for Default"
   },
   "yureiString": {
     "type": "text",
-    "label": "Yurei (Leave Empty for Default)",
+    "label": "Yurei",
     "value": "",
-    "group": "Conclusion Messages"
-  },
-  "dashboardBackgroundColor": {
-    "type": "colorpicker",
-    "label": "Background Color",
-    "value": "rgba(0, 0, 0, 0.5)",
-    "group": "Theming"
-  },
-  "fontFamily": {
-    "type": "googleFont",
-    "label": "Font",
-    "value": "Roboto",
-    "group": "Theming"
-  },
-  "nameColor": {
-    "type": "colorpicker",
-    "label": "Name Color",
-    "value": "rgb(255, 255, 255)",
-    "group": "Theming"
-  },
-  "nameFontSize": {
-    "type": "number",
-    "label": "Name Font Size",
-    "value": 24,
-    "group": "Theming"
+    "group": "Conclusion Messages - Empty for Default"
   },
   "borderColor": {
     "type": "colorpicker",
     "label": "Border Color",
     "value": "rgb(255, 255, 255)",
-    "group": "Theming - Border"
+    "group": "Theming - Single-Color Border"
+  },
+  "borderWidth": {
+    "type": "number",
+    "label": "Border Thickness",
+    "value": 4,
+    "step": 0.25,
+    "min": 0,
+    "group": "Theming - Single-Color Border"
+  },
+  "borderRadius": {
+    "type": "number",
+    "label": "Border Radius (Corner Rounding)",
+    "value": 15,
+    "step": 1,
+    "min": 0,
+    "group": "Theming - Single-Color Border"
   },
   "borderType": {
     "type": "dropdown",
-    "label": "Choose a border type:",
+    "label": "Border Type",
     "value": "solid",
     "options": {
       "solid": "Solid Border",
@@ -712,19 +748,7 @@
       "double": "Double Border",
       "none": "No Border"
     },
-    "group": "Theming - Border"
-  },
-  "borderWidth": {
-    "type": "number",
-    "label": "Enter a border width:",
-    "value": 4,
-    "group": "Theming - Border"
-  },
-  "borderRadius": {
-    "type": "number",
-    "label": "Enter a border radius:",
-    "value": 30,
-    "group": "Theming - Border"
+    "group": "Theming - Single-Color Border"
   },
   "useGradientBorder": {
     "type": "dropdown",
@@ -734,7 +758,7 @@
       "yes": "Yes",
       "no": "No"
     },
-    "group": "Theming - Border"
+    "group": "Theming - Gradient Border"
   },
   "useAnimatedBorder": {
     "type": "dropdown",
@@ -744,7 +768,7 @@
       "yes": "Yes",
       "no": "No"
     },
-    "group": "Theming - Border"
+    "group": "Theming - Gradient Border"
   },
   "animationDuration": {
     "type": "slider",
@@ -753,48 +777,67 @@
     "min": 1,
     "max": 10,
     "step": 0.5,
-    "group": "Theming - Border"
+    "group": "Theming - Gradient Border"
   },
   "animatedBorderColor": {
     "type": "colorpicker",
     "label": "Border Color One",
     "value": "rgb(255, 255, 255)",
-    "group": "Theming - Border"
+    "group": "Theming - Gradient Border"
   },
   "animatedBorderColorTwo": {
     "type": "colorpicker",
     "label": "Border Color Two",
     "value": "rgb(248, 203, 248)",
-    "group": "Theming - Border"
+    "group": "Theming - Gradient Border"
   },
   "animatedBorderColorThree": {
     "type": "colorpicker",
     "label": "Border Color Three",
     "value": "rgb(255, 0, 255)",
-    "group": "Theming - Border"
+    "group": "Theming - Gradient Border"
   },
   "animatedBorderAngle": {
     "type": "number",
     "label": "Border Angle",
     "value": 0,
-    "group": "Theming - Border"
+    "step": 1,
+    "min": -180,
+    "max": 180,
+    "group": "Theming - Gradient Border"
   },
   "animatedBorderWidth": {
     "type": "number",
-    "label": "Enter a border width:",
-    "value": 10,
-    "group": "Theming - Border"
+    "label": "Border Thickness",
+    "value": 4,
+    "step": 0.25,
+    "min": 0.25,
+    "group": "Theming - Gradient Border"
   },
   "animatedBorderRadius": {
     "type": "number",
-    "label": "Enter a border radius:",
-    "value": 5,
-    "group": "Theming - Border"
+    "label": "Border Radius (Corner Rounding)",
+    "value": 15,
+    "step": 1,
+    "min": 0,
+    "group": "Theming - Gradient Border"
   },
   "dividerColor": {
     "type": "colorpicker",
     "label": "Divider Color",
     "value": "rgba(255, 255, 255, 1)",
+    "group": "Theming - Divider"
+  },
+  "dividerWidth": {
+    "type": "dropdown",
+    "label": "Choose a divider width:",
+    "value": "divide-y",
+    "options": {
+      "divide-y": "1px",
+      "divide-y-2": "2px",
+      "divide-y-4": "4px",
+      "divide-y-8": "8px"
+    },
     "group": "Theming - Divider"
   },
   "dividerType": {
@@ -807,18 +850,6 @@
       "divide-dotted": "Dotted Divider",
       "divide-double": "Double Divider",
       "divide-none": "No Divider"
-    },
-    "group": "Theming - Divider"
-  },
-  "dividerWidth": {
-    "type": "dropdown",
-    "label": "Choose a divider width:",
-    "value": "divide-y",
-    "options": {
-      "divide-y": "1px",
-      "divide-y-2": "2px",
-      "divide-y-4": "4px",
-      "divide-y-8": "8px"
     },
     "group": "Theming - Divider"
   }
