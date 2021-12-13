@@ -910,7 +910,7 @@ const _toggleSighting = (sighting, state) => {
 const _togglePossession = (possession, state) => {
   possession = possession.substr(possession.indexOf(" ") + 1)
   const thisPossession = getValueFromArray(POSSESSIONS, possession);
-  for (const [key] of Object.entries(POSSESSIONS)) {
+  for (const [key] of Object.entries(state.cursedPossessions)) {
     state.cursedPossessions[key] = (key === thisPossession) ? !state.cursedPossessions[key] : false;
   }
   state.cursedPossessions['none'] = (arrayIsFalse(state.cursedPossessions)) ? true : false;
