@@ -609,7 +609,7 @@ window.addEventListener("onWidgetLoad", function (obj) {
       evidence: MARE,
     },
     {
-      type: "Mimic",
+      type: "The Mimic",
       conclusion: createGhostConclusionString(fieldData["mimicString"], "The Mimic"),
       evidence: MIMIC,
     },
@@ -756,7 +756,7 @@ window.addEventListener("onWidgetLoad", function (obj) {
     $(`#name`).addClass("hidden");
   }
 
-  if (!displayLocation && !displaySightings) {
+  if (!displayLocation && !displaySightings && !displayCursedPossessions) {
     $(`#location-container`).addClass("hidden");
   } else {
     if (!displayLocation) {
@@ -766,6 +766,9 @@ window.addEventListener("onWidgetLoad", function (obj) {
     if (!displaySightings) {
       $(`#location-sightings`).addClass("hidden");
     } 
+    if (!displayCursedPossessions) {
+      $(`#possession-container`).addClass("hidden");
+    }
   }
 
   if (!displayEvidence && !displayCounter) {
@@ -784,10 +787,6 @@ window.addEventListener("onWidgetLoad", function (obj) {
     } else {
       $(`#counter2-name`).html(". "+$(`#counter2-name`).text());
     }
-  }
-
-  if (!displayCursedPossessions) {
-    $(`#cursed-possessions-container`).addClass("hidden");
   }
 
   if (!displayOptionalObjectives) {
